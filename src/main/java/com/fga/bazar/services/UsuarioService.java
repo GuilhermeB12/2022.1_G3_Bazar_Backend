@@ -1,6 +1,7 @@
 package com.fga.bazar.services;
 
 import com.fga.bazar.models.Endereco;
+import com.fga.bazar.models.Produto;
 import com.fga.bazar.models.Usuario;
 import com.fga.bazar.models.dtos.NovoUsuarioDto;
 import com.fga.bazar.models.dtos.UsuarioDto;
@@ -78,5 +79,21 @@ public class UsuarioService implements UserDetailsService {
 
         return new UsuarioDto(novoUsuario);
     }
+
+    public Usuario buscarPorId(Integer id) {
+
+
+        return usuarioRepository.findById(id).orElseThrow();
+    }
+
+    public Usuario atualizarDados(Integer id, Usuario usuario) {
+        var dadosSetados = this.buscarPorId(id);
+
+        dadosSetados.setNome(usuario.getNome());
+        dadosSetados.setEmail(usuario.getEmail());
+        dadosSetados.setSenha(usuario.getSenha());
+        return usuarioRepository.save(dadosSetados);
+    }
+
 
 }

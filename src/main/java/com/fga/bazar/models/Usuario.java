@@ -61,6 +61,12 @@ public class Usuario implements Serializable, UserDetails {
         this.senha = senha;
     }
 
+    public Usuario(Integer id, String nome, String email, String senha) {
+        this.nome = nome;
+        this.email = email;
+        this.senha = senha;
+    }
+
     public Integer getId() {
         return id;
     }
